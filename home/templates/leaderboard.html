@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Leaderboard {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            <form class="form-inline" method="get">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select Quiz Type</label>
+                    <select name="quiz_value" class="form-control" id="exampleFormControlSelect1">
+                        {% for q in quiz %}
+                            <option value="{{ q.id }}">{{ q.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Quiz</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+{% for mark in marks %}
+<tr>
+  <td>{{mark.user}}</td>
+  <td>{{mark.quiz}}</td>
+  <td>{{mark.score}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
